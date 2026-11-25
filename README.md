@@ -43,10 +43,6 @@ This script calls two Python scripts:
 
 This step reduces the amount of source code that needs to be processed during the subsequent CADNA modifications, while preserving the original file structure.
 
-The modified sources can be found in:
-
-`nemo/tests/DWARF/MY_SRC_DUMMY_PY`
-
 After running the script, the modified sources can be found in:
 
 `nemo/tests/DWARF/MY_SRC_DUMMY_PY`
