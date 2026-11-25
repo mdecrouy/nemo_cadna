@@ -38,7 +38,7 @@ The workflow consists of running the following two scripts in order.
 
 This script calls two Python scripts:
 
-- `makedummy.py`: empties source files that are not required for the current configuration, while keeping the files themselves in place.
+- `makedummy.py`: empties source files that are not required for the current configuration.
 - `clean_var.py`: removes unused variables from the remaining source files.
 
 This step reduces the amount of source code that needs to be processed during the subsequent CADNA modifications, while preserving the original file structure.
