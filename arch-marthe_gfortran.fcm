@@ -1,0 +1,43 @@
+#
+# This arch file was automatically created by /Users/marthe/Dropbox/nemo/arch/build_arch-auto.sh
+# Lun  1 sep 2025 12:15:30 CEST
+#
+%CODES_HOME           /ccc/scratch/cont005/gen13051/decrouym
+
+%PROD_XIOS_HOME      %{CODES_HOME}/xios-2-trunk
+%DEBUG_XIOS_HOME     %{CODES_HOME}/xios-2-trunk
+
+%NCDF_INC            -I$NETCDFFORTRAN_INCDIR -I$NETCDF_INCDIR
+%NCDF_LIB            -L$NETCDFFORTRAN_LIBDIR -lnetcdff -L$NETCDF_LIBDIR -lnetcdf -L$HDF5_LIBDIR -lhdf5_hl -lhdf5 -lz -lcurl -lm
+
+%XIOS_INC            -I%DEBUG_XIOS_HOME/inc
+%XIOS_LIB            -L%DEBUG_XIOS_HOME/lib -lxios -lstdc++
+
+%CADNA_PREFIX        /ccc/work/cont005/gen13051/decrouym/cadnac
+
+%CADNA_INC           -I%CADNA_PREFIX/include 
+%CADNA_LIB           -L%CADNA_PREFIX/lib -lcadnaMPIFortran -lcadnaMPICdebug -lcadnaFortran -lcadnaCdebug -lstdc++ -lmpi_cxx
+
+%SR_PREFIX 	     /ccc/work/cont005/gen13051/decrouym/srfloat
+
+%SR_INC 	     -I%SR_PREFIX/build
+%SR_LIB 	     -L%SR_PREFIX/build -lsr_fortran -lsr_core -lsr_bindings -lstdc++
+
+%CPP                 cpp -Dkey_nosignedzero
+%FC                  mpif90
+%PROD_FCFLAGS        -frounding-math -fdefault-real-8 -march=native -O2 -funroll-all-loops -fcray-pointer -ffree-line-length-none -fallow-argument-mismatch
+%DEBUG_FCFLAGS       -frounding-math -fdefault-real-8 -Og -g -fbacktrace -funroll-all-loops -fcray-pointer -ffree-line-length-none -fcheck=all,no-array-temps -finit-real=nan -finit-logical=true -finit-integer=2147483647 -ffpe-trap=invalid,zero,overflow -ffpe-summary=invalid,zero,overflow -fallow-argument-mismatch
+%FFLAGS              %FCFLAGS
+%LD                  %FC
+%LDFLAGS             -Wl,-rpath,%NCDF_LIB -Wl,-rpath,%XIOS_LIB -Wl,-rpath,%CADNA_LIB -Wl,-rpath,%SR_LIB -ffast-math
+%FPPFLAGS            -P -traditional
+%AR                  ar
+%ARFLAGS             rs
+%MK                  make
+%USER_INC            %NCDF_INC %XIOS_INC %CADNA_INC %SR_INC
+%USER_LIB            %NCDF_LIB %XIOS_LIB %CADNA_LIB %SR_LIB
+
+%CC                  gcc
+%CFLAGS              -O0 -fcommon
+
+
