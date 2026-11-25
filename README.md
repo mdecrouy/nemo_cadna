@@ -30,7 +30,7 @@ These exclusions are required for NEMO to compile correctly with the modified CA
 
 The workflow consists of running the following two scripts in order.
 
-### 1. Remove unused source files
+### 1. Empty unused source files
 
 ```bash
 ./makedummy.sh
@@ -38,10 +38,10 @@ The workflow consists of running the following two scripts in order.
 
 This script calls two Python scripts:
 
-- `makedummy.py`: replaces source files that are not required for the current configuration with empty (dummy) files.
+- `makedummy.py`: empties source files that are not required for the current configuration.
 - `clean_var.py`: removes unused variables from the remaining source files.
 
-This step simplifies the subsequent source-code modifications by reducing the number of files and variables that need to be processed.
+This step reduces the amount of source code that needs to be processed during the subsequent CADNA modifications, while preserving the original file structure.
 
 After running the script, the modified sources can be found in:
 
@@ -93,7 +93,7 @@ If MPI-related issues occur, try different numbers of processes and check the co
 ## Workflow Summary
 
 ```bash
-# Step 1: Clean up unused source files
+# Step 1: Empty unused source files
 ./makedummy.sh
 
 # Step 2: Generate CADNA-compatible NEMO sources
