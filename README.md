@@ -59,7 +59,7 @@ The script takes the following configuration options into account:
 
 - **Precision:** Selects between single and double precision.
 - **Compiler:** Specifies the Fortran compiler to be used.
-- **MPI:** Determines whether the generated sources should use MPI (parallel execution) or run in sequential mode.
+- **MPI:** Determines whether the generated sources should use MPI or run in sequential mode.
 
 The script modifies the NEMO source code, replacing standard floating-point variables and operations with their corresponding CADNA stochastic arithmetic equivalents where required. 
 
