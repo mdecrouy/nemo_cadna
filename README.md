@@ -10,7 +10,7 @@ The process consists of two main steps:
 
 ## Prerequisites
 
-Before running the scripts, make sure the following software is installed and properly configured:
+Before running the scripts, the following software should be installed:
 
 - **NEMO** – the NEMO source code.
 - **CADNA** – the CADNA library (Control of Accuracy and Debugging for Numerical Applications). See the [official CADNA website](https://cadna.lip6.fr/) for installation instructions and documentation. **Make sure to enable Fortran support when configuring and installing CADNA.**
@@ -24,7 +24,7 @@ bld::excl_dep        use::cadna
 bld::excl_dep        use::cadna_mpi
 ```
 
-These exclusions are required for NEMO to compile correctly with the modified CADNA sources.
+These exclusions are needed for NEMO to compile correctly with the modified CADNA sources.
 
 ## Usage
 
@@ -67,13 +67,13 @@ After running the script, the modified sources can be found in:
 
 `nemo/tests/DWARF/MY_SRC_CADNA`
 
-The script automatically then compiles the modified NEMO sources with CADNA, using custom architecture files:
+The script then automatically compiles the modified NEMO sources with CADNA, using custom architecture files:
 
 `arch-marthe[_sp]_[compiler].fcm`
 
 where:
 - `_sp` is included when using single precision.
-- `[compiler]` specifies the selected compiler.
+- `[compiler]` specifies the selected compiler (`gfortran` or `ifort`).
 
 **Important:** These files contain library paths pointing to the original development environment. Before compilation, make sure to update these paths to match your local installations of **XIOS** and **CADNA**.
 
@@ -87,15 +87,3 @@ In particular:
 - In certain cases, MPI execution may work with a specific number of processes but fail with others.
 
 **Recommendation:** Start by testing the generated sources in sequential mode (without MPI). Once the sequential configuration is working correctly, proceed with MPI.
-
-If MPI-related issues occur, try different numbers of processes and check the compatibility of your compiler and MPI implementation.
-
-## Workflow Summary
-
-```bash
-# Step 1: Empty unused source files
-./makedummy.sh
-
-# Step 2: Generate CADNA-compatible NEMO sources
-./makecadna.sh
-```
